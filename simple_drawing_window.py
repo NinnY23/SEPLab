@@ -29,6 +29,7 @@ class Simple_drawing_window(QWidget):
         p.end()
 
 
+
 class Simple_drawing_window2(QWidget):
 
     def __init__(self):
@@ -36,9 +37,13 @@ class Simple_drawing_window2(QWidget):
         self.setWindowTitle("Simple Drawing")
         self.rabbit = QPixmap("images/rabbit.png")
 
+class Simple_drawing_window1(Simple_drawing_window):
+
+
     def paintEvent(self, e):
         p = QPainter()
         p.begin(self)
+
 
         # Draw a polygon (triangle) with three points
         p.setPen(QColor(0, 0, 0))  # Black border for the triangle
@@ -72,6 +77,27 @@ class Simple_drawing_window2(QWidget):
 def main():
     app = QApplication(sys.argv)
     w = Simple_drawing_window2()
+
+        p.setPen(QColor(0,0,0))
+        p.setBrush(QColor(0,127,0))
+        p.drawPolygon([
+
+            QPoint(50,100), QPoint(100,10), QPoint(150,100),QPoint(100,150),
+        ])
+        p.setPen(QColor(255,127,0))
+        p.setBrush(QColor(255,127,0))
+        p.drawPie(50,150,100,100,0,180*16)
+
+        p.drawPolygon([QPoint(50,200), QPoint(150,200),QPoint(100,400)])
+        p.drawPixmap(QRect(200,100,320,320), self.rabbit)
+        p.end()
+
+
+def main():
+    app = QApplication(sys.argv)
+    w = Simple_drawing_window1()
+
+
     w.show()
     return app.exec()
 

@@ -68,6 +68,35 @@ class Simple_drawing_window2(Simple_drawing_window):
         p.drawPixmap(QRect(200,100,320,320), self.rabbit)
         p.end()
 
+class Simple_drawing_window3(Simple_drawing_window):
+
+    def __init__(self):
+        QWidget.__init__(self, None)
+        self.setWindowTitle("Simple Drawing")
+        self.rabbit = QPixmap("images/rabbit.png")
+
+    def paintEvent(self, e):
+        p = QPainter()
+        p.begin(self)
+
+        p.setPen(QColor(0,0,0))
+        p.setBrush(QColor(0,127,0))
+        p.setPen(QColor(0, 0, 255))
+        p.drawEllipse(70, 100, 50, 50)
+
+
+        p.setPen(QColor(255,127,0))
+        p.setBrush(QColor(255,127,0))
+        p.drawPie(50,150,100,100,0,180*16)
+
+        p.drawPolygon([QPoint(50,200), QPoint(150,200),QPoint(100,400)])
+        p.drawPixmap(QRect(200,100,320,320), self.rabbit)
+
+        # Draw a circle to the right of the image
+
+
+        p.end()    
+
 def main():
     app = QApplication(sys.argv)
     w = Simple_drawing_window1()
@@ -75,6 +104,9 @@ def main():
 
     w2 = Simple_drawing_window2()
     w2.show()
+
+    w3 = Simple_drawing_window3()
+    w3.show()
     return app.exec()
 
 if __name__ == "__main__":
